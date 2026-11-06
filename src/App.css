@@ -1345,17 +1345,85 @@
     text-align: center;
   }
 
-  .title-wrap,
   .subtitle,
-  .control-stack,
   .bottom-clear-wrap,
   .brand-mark,
   .header-actions {
     display: none;
   }
 
+  .title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto 12px;
+  }
+
+  .bubble {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    border-width: 2px;
+  }
+
+  .control-stack {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .activity-panel {
+    min-width: 0;
+    width: 100%;
+    padding: 10px 10px 8px;
+    border-radius: 20px;
+  }
+
+  .activity-panel-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .activity-controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .action-button,
+  .plus-button {
+    min-height: 52px;
+    border-radius: 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .plus-button {
+    font-size: 1.8rem;
+  }
+
+  .theme-panel {
+    width: 100%;
+    padding: 10px 10px 8px;
+    border-radius: 18px;
+  }
+
+  .mode-menu {
+    width: 100%;
+    justify-content: center;
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .mode-button {
+    min-width: 0;
+    flex: 1;
+    min-height: 42px;
+    font-size: 0.72rem;
+    padding: 0.6rem 0.5rem;
+  }
+
   .scene {
-    min-height: 460px;
+    min-height: 420px;
     margin-top: 0;
     padding-top: 0;
   }
