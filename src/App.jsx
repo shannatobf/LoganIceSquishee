@@ -21,7 +21,8 @@ const modes = [
 ]
 
 const sparkles = Array.from({ length: 12 }, (_, index) => index)
-const confettiBits = Array.from({ length: 14 }, (_, index) => index)
+const confettiBits = Array.from({ length: 20 }, (_, index) => index)
+const balloonPalette = ['#ff6b6b', '#ffb703', '#7fe7ff', '#9be7a0', '#b99cff', '#ff8cc6', '#ffd166']
 
 function App() {
   const [mode, setMode] = useState('ice')
@@ -29,7 +30,7 @@ function App() {
   const [reaction, setReaction] = useState('POW')
   const [isMoving, setIsMoving] = useState(false)
   const [isPartyMode, setIsPartyMode] = useState(false)
-  const [partyBuddy, setPartyBuddy] = useState(null)
+  const [partyBalloons, setPartyBalloons] = useState([])
   const [babySquishies, setBabySquishies] = useState([])
 
   const handleSquish = () => {
@@ -49,13 +50,15 @@ function App() {
   }
 
   const handleParty = () => {
-    const nextParty = {
-      id: Date.now() + Math.random(),
-      x: 56,
-      y: 26,
-    }
+    const balloons = Array.from({ length: 12 }, (_, index) => ({
+      id: Date.now() + index,
+      left: 8 + Math.random() * 82,
+      color: balloonPalette[index % balloonPalette.length],
+      delay: index * 0.08,
+      drift: (Math.random() - 0.5) * 80,
+    }))
 
-    setPartyBuddy(nextParty)
+    setPartyBalloons(balloons)
     setIsPartyMode(true)
     setIsMoving(true)
     setIsSquished(true)
@@ -65,8 +68,11 @@ function App() {
       setIsSquished(false)
       setIsMoving(false)
       setIsPartyMode(false)
-      setPartyBuddy(null)
     }, 1800)
+
+    window.setTimeout(() => {
+      setPartyBalloons([])
+    }, 3500)
   }
 
   const handleAddBaby = () => {
@@ -104,7 +110,7 @@ function App() {
 
           <p className="subtitle">
             Tap a button and watch Logan&apos;s squishee switch from icy cool to sunny
-            happy to rainy splashy excitement.
+            happy and playful fun.
           </p>
 
           <div className="control-stack">
@@ -255,42 +261,38 @@ function App() {
                 </div>
               ))}
 
-              {partyBuddy && (
-                <div
-                  className="party-buddy"
-                  style={{
-                    left: `${partyBuddy.x}%`,
-                    top: `${partyBuddy.y}%`,
-                  }}
-                >
-                  <div className="party-lights" aria-hidden="true">
-                    <span className="light pink" />
-                    <span className="light blue" />
-                    <span className="light yellow" />
-                    <span className="light purple" />
-                    <span className="light green" />
-                  </div>
+              {isPartyMode && (
+                <div className="party-confetti" aria-hidden="true">
+                  {confettiBits.map((piece) => (
+                    <span
+                      key={piece}
+                      className={`confetti piece-${piece}`}
+                      style={{
+                        background: ['#ff7eb6', '#ffd166', '#7fe7ff', '#9be7a0', '#b99cff', '#ff6b6b'][piece % 6],
+                        left: `${8 + ((piece * 11) % 80)}%`,
+                        animationDelay: `${piece * 0.06}s`,
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
 
-                  <div className="party-confetti" aria-hidden="true">
-                    {confettiBits.map((piece) => (
-                      <span
-                        key={piece}
-                        className={`confetti piece-${piece}`}
-                        style={{
-                          background: ['#ff7eb6', '#ffd166', '#7fe7ff', '#9be7a0', '#b99cff'][piece % 5],
-                          left: `${12 + (piece * 7) % 70}%`,
-                          animationDelay: `${piece * 0.09}s`,
-                        }}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="party-squishy">
-                    <span className="baby-eye left" />
-                    <span className="baby-eye right" />
-                    <span className="baby-smile" />
-                    <span className="diamond-glare" aria-hidden="true" />
-                  </div>
+              {partyBalloons.length > 0 && (
+                <div className="party-balloons" aria-hidden="true">
+                  {partyBalloons.map((balloon) => (
+                    <span
+                      key={balloon.id}
+                      className="party-balloon"
+                      style={{
+                        left: `${balloon.left}%`,
+                        background: balloon.color,
+                        animationDelay: `${balloon.delay}s`,
+                        ['--drift']: `${balloon.drift}px`,
+                      }}
+                    >
+                      <span className="balloon-string" />
+                    </span>
+                  ))}
                 </div>
               )}
             </div>
