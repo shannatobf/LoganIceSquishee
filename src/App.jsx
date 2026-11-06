@@ -127,9 +127,14 @@ function App() {
                 <button type="button" className="action-button party-action" onClick={handleParty}>
                   LET&apos;S PARTY
                 </button>
-                <button type="button" className="plus-button" onClick={handleAddBaby} aria-label="Add baby squishee">
-                  +
-                </button>
+                <div className="mini-action-row">
+                  <button type="button" className="plus-button" onClick={handleAddBaby} aria-label="Add baby squishee">
+                    + SQUISHEES
+                  </button>
+                  <button type="button" className="clear-button mini-clear" onClick={handleClearBabies}>
+                    CLEAR
+                  </button>
+                </div>
               </div>
             </div>
 
