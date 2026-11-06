@@ -405,6 +405,123 @@
   overflow: visible;
 }
 
+.island-scene {
+  position: absolute;
+  left: 60%;
+  bottom: 12px;
+  width: min(760px, 88%);
+  height: 180px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.island-ring {
+  position: absolute;
+  left: 58%;
+  bottom: 8px;
+  width: 92%;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.18);
+}
+
+.island {
+  position: absolute;
+  left: 58%;
+  bottom: 28px;
+  width: 72%;
+  height: 96px;
+  background: linear-gradient(180deg, #f7d98d 0%, #f2bf64 38%, #dca255 100%);
+  border-radius: 50% 48% 52% 42% / 65% 57% 43% 35%;
+  box-shadow: inset 0 -12px 0 rgba(157, 101, 43, 0.12), 0 16px 22px rgba(145, 110, 48, 0.18);
+  transform: translateX(-50%);
+  animation: islandFloat 4s ease-in-out infinite alternate;
+}
+
+.sand-sheen {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  width: 68%;
+  height: 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.12));
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.palm {
+  position: absolute;
+  bottom: 70px;
+  width: 30px;
+  height: 140px;
+  animation: palmSway 5s ease-in-out infinite alternate;
+}
+
+.palm-left {
+  left: 28%;
+}
+
+.palm-right {
+  right: 12%;
+  animation-delay: 0.5s;
+}
+
+.palm .trunk {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 12px;
+  height: 92px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #7f5d3a 0%, #5e3f28 100%);
+  box-shadow: inset -5px 0 0 rgba(255,255,255,0.14);
+}
+
+.palm .leaf {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  width: 70px;
+  height: 18px;
+  border-radius: 60% 40% 60% 40%;
+  background: linear-gradient(90deg, #6ecf6d 0%, #3dbf58 100%);
+  border: 2px solid rgba(255,255,255,0.18);
+  transform-origin: left center;
+  box-shadow: 0 8px 16px rgba(44, 126, 83, 0.2);
+}
+
+.palm .leaf-1 { transform: translate(-10px, 0) rotate(-18deg); }
+.palm .leaf-2 { transform: translate(-8px, -4px) rotate(18deg); }
+.palm .leaf-3 { transform: translate(-8px, -6px) rotate(-52deg); }
+.palm .leaf-4 { transform: translate(-10px, -4px) rotate(54deg); }
+
+.wave {
+  position: absolute;
+  left: 58%;
+  bottom: 0;
+  width: 66%;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(122, 203, 255, 0.6);
+  transform: translateX(-50%);
+  animation: waveDrift 5s ease-in-out infinite alternate;
+}
+
+.wave-one {
+  opacity: 0.8;
+  bottom: 12px;
+}
+
+.wave-two {
+  width: 52%;
+  opacity: 0.5;
+  bottom: 0;
+  animation-delay: 0.8s;
+}
+
 .squishee-shell {
   position: relative;
   width: min(820px, 100%);
@@ -749,6 +866,33 @@
   inset: 12px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.24);
+}
+
+@keyframes islandFloat {
+  0% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+@keyframes palmSway {
+  0% {
+    transform: rotate(-4deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(6deg) translateY(-4px);
+  }
+}
+
+@keyframes waveDrift {
+  0% {
+    transform: translateX(-50%) scaleX(0.96);
+  }
+  100% {
+    transform: translateX(-48%) scaleX(1.08);
+  }
 }
 
 @keyframes wheelSpin {

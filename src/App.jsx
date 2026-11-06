@@ -166,6 +166,28 @@ function App() {
         </div>
 
         <div className="scene" aria-live="polite">
+          <div className="island-scene" aria-hidden="true">
+            <div className="sand-sheen" />
+            <div className="island-ring" />
+            <div className="island" />
+            <div className="palm palm-left">
+              <span className="trunk" />
+              <span className="leaf leaf-1" />
+              <span className="leaf leaf-2" />
+              <span className="leaf leaf-3" />
+              <span className="leaf leaf-4" />
+            </div>
+            <div className="palm palm-right">
+              <span className="trunk" />
+              <span className="leaf leaf-1" />
+              <span className="leaf leaf-2" />
+              <span className="leaf leaf-3" />
+              <span className="leaf leaf-4" />
+            </div>
+            <div className="wave wave-one" />
+            <div className="wave wave-two" />
+          </div>
+
           <div className={`squishee-shell ${isMoving ? 'moving' : ''} ${isPartyMode ? 'party-mode' : ''}`}>
             <div
               className={`squishee ${mode} ${isSquished ? 'squished' : ''} ${reaction.toLowerCase()} ${isPartyMode ? 'party-mode' : ''}`}
